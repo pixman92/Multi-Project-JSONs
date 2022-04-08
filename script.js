@@ -37,13 +37,19 @@ function addLittleToBig(index, projName){
     //     console.log('Index not found! Try to push new index');
     // }
 }
-//=================
-function pullOutJSONproject(str){
-    extractedJSON = new JSON_Instance();
-    extractedJSON.insertJSON(str);
-    extractedJSON.parseMe();
-    extractedJSON.print();
+function changeProjectName(index, replacement){
+    if(index!=0){
+        theBigJSON.JSONobj.innerArray[index][0][1] = replacement;
+    }
 }
+function changeProjectData(index, JSONString){
+    // JSONString = theSmallJSON.stringMe()
+    if(index!=0){
+        theBigJSON.JSONobj.innerArray[1][1][1] = JSONString;
+    }
+
+}
+
 // =================
 var nameOfProject; var dataOfProject;
 function pullProjectOnIndex(index){
@@ -56,6 +62,19 @@ function pullProjectOnIndex(index){
     pullOutJSONproject(dataOfProject);
 }
 
+function pullOutJSONproject(str){
+    extractedJSON = new JSON_Instance();
+    extractedJSON.insertJSON(str);
+    extractedJSON.parseMe();
+    extractedJSON.print();
+}
+
+function addToExtracted(dataToAdd){
+    extractedJSON.addToObj([[[0], [dataToAdd]]]);
+    var savedString = extractedJSON.stringMe();
+    theSmallJSON = new JSON_Instance();
+    theSmallJSON.insertJSON(savedString);
+}
 
 
 // =================
@@ -63,7 +82,7 @@ function run(){
     initVariables();
     addMetaToBig("Chris's Data");
     addStuffToLittle('hey there, much love');
-    addLittleToBig(1, 'i love this project')
+    addLittleToBig("", 'i love this project')
 }
 
 function run2(){
