@@ -1,6 +1,6 @@
 var theBigJSON;
-
 var theSmallJSON;
+var extractedJSON;
 
 function initVariables(){
     theBigJSON = new JSON_Instance();
@@ -30,7 +30,13 @@ function addLittleToBig(index, projName){
         console.log('Index not found! Try to push new index');
     }
 }
-
+//=================
+function pullOutJSONproject(str){
+    extractedJSON = new JSON_Instance();
+    extractedJSON.insertJSON(str);
+    extractedJSON.parseMe();
+    extractedJSON.print();
+}
 
 
 
@@ -41,7 +47,7 @@ function run(){
     initVariables();
     addMetaToBig("Chris's Data");
     addStuffToLittle('hey there, much love');
-
+    addLittleToBig(1, 'i love this project')
 
 
 }
