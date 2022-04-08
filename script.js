@@ -19,23 +19,23 @@ function addStuffToLittle(dataToAdd){
 }
 
 function addLittleToBig(index, projName){
-    // if(theBigJSON.JSONobj.innerArray[1]==undefined){
-    //     theBigJSON.addMoreToIndex(index, [[[0], [smallInStringForm]]]);    
-    // }else{
-    //     theBigJSON.addToObj([[[0], [smallInStringForm]]]);
-    // }
-
-    
     var smallInStringForm = theSmallJSON.stringMe();
     // theBigJSON.JSONobj.innerArray
     var arrToPush = [['name', projName], ['data', smallInStringForm]]
-    theBigJSON.JSONobj.innerArray[index] = arrToPush;
+
+    if(index == ""){
+        theBigJSON.JSONobj.innerArray.push('');
+        var len = theBigJSON.JSONobj.innerArray.length-1
+        theBigJSON.JSONobj.innerArray[len] = arrToPush;
+    }else{
+        theBigJSON.JSONobj.innerArray[index] = arrToPush;
+    }
 
     theSmallJSON = new JSON_Instance();
 
-    if(theBigJSON.JSONobj.innerArray[index]==undefined){
-        console.log('Index not found! Try to push new index');
-    }
+    // if(theBigJSON.JSONobj.innerArray[index]==undefined){
+    //     console.log('Index not found! Try to push new index');
+    // }
 }
 //=================
 function pullOutJSONproject(str){
@@ -45,14 +45,15 @@ function pullOutJSONproject(str){
     extractedJSON.print();
 }
 // =================
-
+var nameOfProject; var dataOfProject;
 function pullProjectOnIndex(index){
     if(index!=0){
-        var name = theBigJSON.JSONobj.innerArray[index][0][1]
-        var data = theBigJSON.JSONobj.innerArray[1][1][1];
-        console.log('Name: ', name);
-        console.log('Data', data);
+        nameOfProject = theBigJSON.JSONobj.innerArray[index][0][1]
+        dataOfProject = theBigJSON.JSONobj.innerArray[1][1][1];
+        console.log('NameOfProject: ', nameOfProject);
+        console.log('Data', dataOfProject);
     }
+    pullOutJSONproject(dataOfProject);
 }
 
 
