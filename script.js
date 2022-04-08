@@ -7,8 +7,22 @@ function initVariables(){
     theSmallJSON = new JSON_Instance();
 }
 
-function addToBig(name){
-    theBigJSON.addToObj([[[0]])
+function addMetaToBig(name){
+    //theBigJSON.JSONobj.innerArray[0][0][1]
+    theBigJSON.addToObj([[[0], ['bigName', name]]]);
+}
+
+function addStuffToLittle(dataToAdd){
+    theSmallJSON.addToObj([[[0], [dataToAdd]]])
+}
+
+function addLittleToBig(index){
+    var smallInStringForm = theSmallJSON.stringMe();
+    if(theBigJSON.JSONobj.innerArray[1]==undefined){
+        theBigJSON.addMoreToIndex(index, [[[0], [smallInStringForm]]]);    
+    }else{
+        theBigJSON.addToObj([[[0], [smallInStringForm]]]);
+    }
 }
 
 
@@ -17,5 +31,14 @@ function addToBig(name){
 
 // =================
 function run(){
+    initVariables();
+    addMetaToBig("Chris's Data");
+    addStuffToLittle('hey there, much love');
 
+
+
+}
+
+window.onload = ()=>{
+    run();
 }
