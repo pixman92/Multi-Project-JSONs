@@ -37,8 +37,16 @@ function pullOutJSONproject(str){
     extractedJSON.parseMe();
     extractedJSON.print();
 }
+// =================
 
-
+function pullProjectOnIndex(index){
+    if(index!=0){
+        var name = theBigJSON.JSONobj.innerArray[index][0][1]
+        var data = theBigJSON.JSONobj.innerArray[1][1][1];
+        console.log('Name: ', name);
+        console.log('Data', data);
+    }
+}
 
 
 
