@@ -18,12 +18,17 @@ function addStuffToLittle(dataToAdd){
 
 function addLittleToBig(index){
     var smallInStringForm = theSmallJSON.stringMe();
-    if(theBigJSON.JSONobj.innerArray[1]==undefined){
-        theBigJSON.addMoreToIndex(index, [[[0], [smallInStringForm]]]);    
-    }else{
-        theBigJSON.addToObj([[[0], [smallInStringForm]]]);
+    // if(theBigJSON.JSONobj.innerArray[1]==undefined){
+    //     theBigJSON.addMoreToIndex(index, [[[0], [smallInStringForm]]]);    
+    // }else{
+    //     theBigJSON.addToObj([[[0], [smallInStringForm]]]);
+    // }
+    if(theBigJSON.JSONobj.innerArray[index]==undefined){
+        console.log('Index not found! Try to push new index');
     }
+    
 }
+
 
 
 
