@@ -1,3 +1,5 @@
+
+
 var theBigJSON;
 var theSmallJSON;
 var extractedJSON;
@@ -17,15 +19,20 @@ function addStuffToLittle(dataToAdd){
 }
 
 function addLittleToBig(index, projName){
-    var smallInStringForm = theSmallJSON.stringMe();
     // if(theBigJSON.JSONobj.innerArray[1]==undefined){
     //     theBigJSON.addMoreToIndex(index, [[[0], [smallInStringForm]]]);    
     // }else{
     //     theBigJSON.addToObj([[[0], [smallInStringForm]]]);
     // }
-    theBigJSON.JSONobj.innerArray
+
+    
+    var smallInStringForm = theSmallJSON.stringMe();
+    // theBigJSON.JSONobj.innerArray
     var arrToPush = [['name', projName], ['data', smallInStringForm]]
     theBigJSON.JSONobj.innerArray[index] = arrToPush;
+
+    theSmallJSON = new JSON_Instance();
+
     if(theBigJSON.JSONobj.innerArray[index]==undefined){
         console.log('Index not found! Try to push new index');
     }
@@ -56,7 +63,11 @@ function run(){
     addMetaToBig("Chris's Data");
     addStuffToLittle('hey there, much love');
     addLittleToBig(1, 'i love this project')
+}
 
+function run2(){
+    addStuffToLittle('nope, not going');
+    addStuffToLittle('lol, maybe???');
 
 }
 
