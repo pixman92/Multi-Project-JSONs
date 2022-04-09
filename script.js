@@ -5,20 +5,25 @@ var theSmallJSON;
 var extractedJSON;
 
 function initVariables(){
+    // inits the variables
     theBigJSON = new JSON_Instance();
     theSmallJSON = new JSON_Instance();
 }
 
 function addMetaToBig(name){
+    // adds the starting name MetaData to the JSON 
     //theBigJSON.JSONobj.innerArray[0][0][1]
     theBigJSON.addToObj([[[0], ['bigName', name]]]);
 }
 
-function addStuffToLittle(dataToAdd){
+function addStuffToSmall(dataToAdd){
+    // pump up the smallJSON with data
     theSmallJSON.addToObj([[[0], [dataToAdd]]])
 }
 
-function addLittleToBig(index, projName){
+function addSmallToBig(index, projName){
+    // adds the entire smallJSON to BigJSON, then clears it
+
     var smallInStringForm = theSmallJSON.stringMe();
     // theBigJSON.JSONobj.innerArray
     var arrToPush = [['name', projName], ['data', smallInStringForm]]
@@ -38,11 +43,18 @@ function addLittleToBig(index, projName){
     // }
 }
 function changeProjectName(index, replacement){
+    // change an exist Project Name, based on Index
     if(index!=0){
         theBigJSON.JSONobj.innerArray[index][0][1] = replacement;
     }
 }
 function changeProjectData(index, JSONString){
+    // change the JOSN string data of the project, be sure to <pullProjectOnIndex(index)>
+    // extrac the Array
+    // add to the array
+    // call this function, changeProjectData(index, extractedJSON.stringMe())
+
+
     // JSONString = theSmallJSON.stringMe()
     if(index!=0){
         theBigJSON.JSONobj.innerArray[1][1][1] = JSONString;
@@ -53,6 +65,8 @@ function changeProjectData(index, JSONString){
 // =================
 var nameOfProject; var dataOfProject;
 function pullProjectOnIndex(index){
+    // pull WHOLE project based on Index
+    // save NAME & DATA - as global variables
     if(index!=0){
         nameOfProject = theBigJSON.JSONobj.innerArray[index][0][1]
         dataOfProject = theBigJSON.JSONobj.innerArray[1][1][1];
@@ -63,6 +77,7 @@ function pullProjectOnIndex(index){
 }
 
 function pullOutJSONproject(str){
+    // helper function to extract JSON string to Array Obj
     extractedJSON = new JSON_Instance();
     extractedJSON.insertJSON(str);
     extractedJSON.parseMe();
@@ -70,6 +85,7 @@ function pullOutJSONproject(str){
 }
 
 function addToExtracted(dataToAdd){
+    // helper function to ADD Data to the exracted Array
     extractedJSON.addToObj([[[0], [dataToAdd]]]);
     var savedString = extractedJSON.stringMe();
     theSmallJSON = new JSON_Instance();
@@ -81,13 +97,13 @@ function addToExtracted(dataToAdd){
 function run(){
     initVariables();
     addMetaToBig("Chris's Data");
-    addStuffToLittle('hey there, much love');
-    addLittleToBig("", 'i love this project')
+    addStuffToSmall('hey there, much love');
+    addSmallToBig("", 'i love this project')
 }
 
 function run2(){
-    addStuffToLittle('nope, not going');
-    addStuffToLittle('lol, maybe???');
+    addStuffToSmall('nope, not going');
+    addStuffToSmall('lol, maybe???');
 
 }
 
