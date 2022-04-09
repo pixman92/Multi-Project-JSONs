@@ -13,7 +13,7 @@ function initVariables(){
 function addMetaToBig(name){
     // adds the starting name MetaData to the JSON 
     //theBigJSON.JSONobj.innerArray[0][0][1]
-    theBigJSON.addToObj([[[0], ['bigName', name]]]);
+    theBigJSON.addMoreToIndex(0, [[[0], ['bigName', name]]]);
 }
 
 function addStuffToSmall(dataToAdd){
@@ -106,8 +106,7 @@ function SmallDeleteProjectFromIndex(index){
     }catch(err){
         console.log('err ', err);
     } 
-        
-    // }
+    
 }
 
 // =================
@@ -115,16 +114,36 @@ function clearSmallJSON(){
     theSmallJSON = new JSON_Instance();
 }
 
+// =================
+function saveToLocal(){
+    theBigJSON.saveToLocalStorage('myProjects');
+}
 
 // ==================================
 function run(){
     initVariables();
-    addMetaToBig("Chris's Data");
-    addStuffToSmall('hey there, much love');
-    addSmallToBig("", 'i love this project')
+
+    var tmpJSON = new JSON_Instance();
+    try{
+        tmpJSON.getFromLocalStorage('myProjects');
+        theBigJSON.insertJSON(tmpJSON.stringMe())
+    }catch(err){
+        console.log('err ', err);
+    }
+    // debugger;
+
+    if(theBigJSON==undefined){
+        addMetaToBig('Preojects!');
+    }
+
 }
 
 function run2(){
+    // addMetaToBig("Chris's Data");
+    addStuffToSmall('hey there, much love');;
+    addSmallToBig("", 'i love this project')
+
+
     addStuffToSmall('nope, not going');
     addStuffToSmall('lol, maybe???');
     addSmallToBig('', 'feelings');
