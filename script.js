@@ -13,7 +13,13 @@ function initVariables(){
 function addMetaToBig(name){
     // adds the starting name MetaData to the JSON 
     //theBigJSON.JSONobj.innerArray[0][0][1]
-    theBigJSON.addMoreToIndex(0, [[[0], ['bigName', name]]]);
+
+    if(theBigJSON==undefined){
+        theBigJSON.JSONobj.innerArray.push("");
+        theBigJSON.addToObj(0, [[[0], ['bigName', name]]]);
+    }else{
+        theBigJSON.addMoreToIndex(0, [[[0], ['bigName', name]]]);
+    }
 }
 
 function addStuffToSmall(dataToAdd){
@@ -132,9 +138,9 @@ function run(){
     }
     // debugger;
 
-    if(theBigJSON==undefined){
-        addMetaToBig('Preojects!');
-    }
+    // if(theBigJSON==undefined){
+    //     addMetaToBig('Preojects!');
+    // }
 
 }
 
