@@ -57,27 +57,29 @@ function changeProjectData(index, JSONString){
 
     // JSONString = theSmallJSON.stringMe()
     if(index!=0){
-        theBigJSON.JSONobj.innerArray[1][1][1] = JSONString;
+        theBigJSON.JSONobj.innerArray[index][1][1] = JSONString;
     }
 
 }
 
 // =================
-var nameOfProject; var dataOfProject;
+var nameOfProject; var dataOfProject; var indexSaved;
 function pullProjectOnIndex(index){
     // pull WHOLE project based on Index
     // save NAME & DATA - as global variables
     if(index!=0){
         nameOfProject = theBigJSON.JSONobj.innerArray[index][0][1]
-        dataOfProject = theBigJSON.JSONobj.innerArray[1][1][1];
+        dataOfProject = theBigJSON.JSONobj.innerArray[index][1][1];
         console.log('NameOfProject: ', nameOfProject);
         console.log('Data', dataOfProject);
     }
-    pullOutJSONproject(dataOfProject);
+    extractJSONFromString(dataOfProject);
+    indexSaved = index;
 }
 
-function pullOutJSONproject(str){
+function extractJSONFromString(str){
     // helper function to extract JSON string to Array Obj
+    // extractedJSON = "";
     extractedJSON = new JSON_Instance();
     extractedJSON.insertJSON(str);
     extractedJSON.parseMe();
@@ -104,9 +106,17 @@ function run(){
 function run2(){
     addStuffToSmall('nope, not going');
     addStuffToSmall('lol, maybe???');
+    addSmallToBig('', 'feelings');
+
+
+
+    addStuffToSmall('bed time');
+    addStuffToSmall('wake up time');
+    addStuffToSmall('lunch time');
+    addSmallToBig('', 'times of day')
 
 }
 
 window.onload = ()=>{
-    run();
+    run();run2();
 }
