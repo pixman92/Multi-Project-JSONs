@@ -77,6 +77,8 @@ function pullProjectOnIndex(index){
     indexSaved = index;
 }
 
+// ==================================
+
 function extractJSONFromString(str){
     // helper function to extract JSON string to Array Obj
     // extractedJSON = "";
@@ -94,8 +96,27 @@ function addToExtracted(dataToAdd){
     theSmallJSON.insertJSON(savedString);
 }
 
+function BigDeleteProjectFromIndex(index){
+    theBigJSON.JSONobj.innerArray.splice(index, 1);
+}
+function SmallDeleteProjectFromIndex(index){
+    // if(extractedJSON!=undefined){
+    try{
+        theSmallJSON.JSONobj.innerArray.splice(index, 1);
+    }catch(err){
+        console.log('err ', err);
+    } 
+        
+    // }
+}
 
 // =================
+function clearSmallJSON(){
+    theSmallJSON = new JSON_Instance();
+}
+
+
+// ==================================
 function run(){
     initVariables();
     addMetaToBig("Chris's Data");
