@@ -14,7 +14,9 @@ function addMetaToBig(name){
     // adds the starting name MetaData to the JSON 
     //theBigJSON.JSONobj.innerArray[0][0][1]
 
-    if(theBigJSON==undefined){
+    theBigJSON = new JSON_Instance();
+
+    if(theBigJSON.JSONobj.innerArray==undefined){
         theBigJSON.JSONobj.innerArray.push("");
         theBigJSON.addToObj(0, [[[0], ['bigName', name]]]);
     }else{
@@ -145,15 +147,21 @@ function run(){
 }
 
 function run2(){
-    // addMetaToBig("Chris's Data");
+    // addMetaToBig("Chris's Data")
+    addMetaToBig('myProjects');
+
+
     addStuffToSmall('hey there, much love');;
-    addSmallToBig("", 'i love this project')
+    addSmallToBig("", 'i love this project');
+
+    debugger;
 
 
     addStuffToSmall('nope, not going');
     addStuffToSmall('lol, maybe???');
     addSmallToBig('', 'feelings');
 
+    debugger;
 
 
     addStuffToSmall('bed time');
